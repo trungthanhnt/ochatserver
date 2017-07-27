@@ -127,7 +127,7 @@ class StreamingClient {
 
 int main(int argc, char** argv) {
 
-    for (int i = 0; i < 10; i ++) {
+    for (int i = 0; i < 100; i ++) {
         thread *t = new thread ([i](){
             StreamingClient aClient(grpc::CreateChannel(
               "localhost:50051", grpc::InsecureChannelCredentials()) );

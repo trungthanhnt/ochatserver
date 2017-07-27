@@ -27,7 +27,6 @@ public:
     ExchangeMessageDataCall* _ptr;
     
     void Proceed() {
-        //cout<<"CustomFuncCallback "<<endl;
         if (_f)            
             _f();
         else
@@ -90,9 +89,6 @@ void ExchangeMessageDataCall::Proceed()
                                     authReply.set_authenticated(true);
                                     authenticated = true;
                                     
-//                                    RtMessageModel::instance()->addUserConnection(
-//                                            client2ServerMsg.authmessage().userid(), this 
-//                                            );
                                     
 
                                 }
@@ -101,11 +97,8 @@ void ExchangeMessageDataCall::Proceed()
 
                                 if (authenticated){
                                     _status = EStreaming;
-                                    // map the call to user.
-                                    //this->streamProcess();
                                     
                                 }
-//                                this->SendMessage(server2ClientMsg);
                                 this->_sendingStatus = ESending;
                                 if (authenticated)
                                     RtMessageModel::instance()->addUserConnection(
@@ -135,6 +128,9 @@ void ExchangeMessageDataCall::Proceed()
 
 void ExchangeMessageDataCall::streamProcess()
 {
+    if (_status == EFinish)
+        return;
+    
     /// read message and push to store;
     static int i = 0;
     cout<<"streaming loop "<<i++<<endl;
@@ -144,13 +140,6 @@ void ExchangeMessageDataCall::streamProcess()
                     
                     ::RtMessageModel::instance()->processUserMessage(uid, client2ServerMsg);
 
-                    cout<<uid <<" server received message: "<<client2ServerMsg.txt().text()<<endl;
-//                    // push to model for processing 
-//                    
-                    //write a test pong 
-//                    this->server2ClientMsg.mutable_txt()->set_text("Hello you, I reply here from server {" 
-//                            + client2ServerMsg.txt().text() + "} " );
-//                    this->SendMessage(server2ClientMsg);
                     this->streamProcess();
                 }
             
@@ -163,7 +152,9 @@ void ExchangeMessageDataCall::streamProcess()
 
 void ExchangeMessageDataCall::SendMessage(const realtime::messageservice::S2CMessage& aMessage)
 {
-    //std::lock_guard<std::mutex> aLock(queueMutex);
+    if (_status == EFinish)
+        return;
+    std::lock_guard<std::mutex> aLock(queueMutex);
     cout<<"send back to client status:"<<_sendingStatus<<" this: "<<this<<endl;
     
     if (_sendingStatus != ESending)
@@ -178,7 +169,7 @@ void ExchangeMessageDataCall::SendMessage(const realtime::messageservice::S2CMes
                     bool nonEmpty = false; 
                     
                     {
-                        //std::lock_guard<std::mutex> aLock2(queueMutex);
+                        std::lock_guard<std::mutex> aLock2(queueMutex);
                         _sendingStatus = EStart;
                     
                         if (sendingQueue.size() > 0 )
@@ -210,7 +201,6 @@ void ExchangeMessageDataCall::Failed()
     RtMessageModel::instance()->removeUserConnection(
             uid, this 
             );
-//    _stream.Finish(grpc::Status::CANCELLED, NULL);
-//    delete this;
+    _status = EFinish;
     
 }

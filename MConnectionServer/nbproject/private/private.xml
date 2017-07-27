@@ -7,15 +7,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="hcore2017">
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/src/MessageASyncServer.cpp</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/inc/UserConnectionsInfo.h</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/src/RtMessageModel.cpp</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/inc/MessageASyncServer.h</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/main.cpp</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/tests/exchangeMessageClient.cpp</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/inc/RtMessageModel.h</file>
-            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/rpc/messageservice.proto</file>
             <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/src/ExchangeMessageDataCall.cpp</file>
+            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/rpc/messageservice.proto</file>
+            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/tests/exchangeMessageClient.cpp</file>
+            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/main.cpp</file>
+            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/src/MessageASyncServer.cpp</file>
+            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/rpc/protogen.sh</file>
+            <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/inc/AbstractCallData.h</file>
             <file>file:/home/trungthanh/src/cpp/hcore2017/Realtime/MConnectionServer/inc/ExchangeMessageDataCall.h</file>
         </group>
     </open-files>
