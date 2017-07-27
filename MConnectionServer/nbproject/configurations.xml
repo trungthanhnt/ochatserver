@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>inc/AbstractCallData.h</itemPath>
+      <itemPath>inc/ExchangeMessageDataCall.h</itemPath>
+      <itemPath>inc/MessageASyncServer.h</itemPath>
+      <itemPath>inc/RtMessageModel.h</itemPath>
+      <itemPath>inc/UserConnectionsInfo.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="f1" displayName="rpc" projectFiles="true">
+      <logicalFolder name="f1" displayName="protobuf" projectFiles="true">
+        <itemPath>rpc/messageservice.grpc.pb.cc</itemPath>
+        <itemPath>rpc/messageservice.grpc.pb.h</itemPath>
+        <itemPath>rpc/messageservice.pb.cc</itemPath>
+        <itemPath>rpc/messageservice.pb.h</itemPath>
+      </logicalFolder>
+      <itemPath>rpc/messageservice.proto</itemPath>
+      <itemPath>rpc/protogen.sh</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>src/AbstractCallData.cpp</itemPath>
+      <itemPath>src/ExchangeMessageDataCall.cpp</itemPath>
+      <itemPath>src/MessageASyncServer.cpp</itemPath>
+      <itemPath>src/RtMessageModel.cpp</itemPath>
+      <itemPath>src/UserConnectionsInfo.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="exchangeMessageClient"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/exchangeMessageClient.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>11</standard>
+          <incDir>
+            <pElem>inc</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lgrpc++ -lgrpc -lprotobuf -lssl -lcrypto -lz   -lpthread -lc -lrt </linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <packaging>
+        <packType>Debian</packType>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="mconnectionserver" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="amd64" mandatory="false"/>
+          <packInfoListElem name="Maintainer" value="trungthanh" mandatory="false"/>
+          <packInfoListElem name="Description" value="..." mandatory="false"/>
+        </packInfoList>
+      </packaging>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
+      <item path="inc/AbstractCallData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/ExchangeMessageDataCall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/MessageASyncServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/RtMessageModel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/UserConnectionsInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.grpc.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.grpc.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.proto" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rpc/protogen.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/AbstractCallData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ExchangeMessageDataCall.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MessageASyncServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/RtMessageModel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/UserConnectionsInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/exchangeMessageClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>11</standard>
+          <incDir>
+            <pElem>inc</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lgrpc++ -lgrpc -lprotobuf -lssl -lcrypto -lz   -lpthread -lc -lrt </linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
+      <item path="inc/AbstractCallData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/ExchangeMessageDataCall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/MessageASyncServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/RtMessageModel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inc/UserConnectionsInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.grpc.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.grpc.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rpc/messageservice.proto" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rpc/protogen.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/AbstractCallData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ExchangeMessageDataCall.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MessageASyncServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/RtMessageModel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/UserConnectionsInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/exchangeMessageClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

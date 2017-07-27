@@ -1,0 +1,166 @@
+
+syntax = "proto3";
+import "google/protobuf/any.proto";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.realtime.messageservice";
+option java_outer_classname = "RealtimeMessageService";
+option objc_class_prefix = "MRC"; // message realtime connection
+
+package realtime.messageservice;
+
+service LoginService{
+    rpc login(LoginRequest) returns (LoginReply) {}    
+}
+
+service OpenAPIService{
+
+}
+
+// The greeting service definition.
+service MessageService {
+
+    
+    // the first message in the stream must be a message with session 
+    
+    rpc exchangeMessages(stream C2SMessage) returns (stream S2CMessage){}
+
+    //exchange single messages
+    rpc sendSingleMessage(C2SMessage) returns (S2CMessage) {}
+
+    // one way stream from server to client 
+    rpc pollMessages(C2SMessage) returns (stream S2CMessage) {}
+
+    // one way stream from client to server 
+    rpc pushMessages(stream C2SMessage) returns (S2CMessage) {}
+}
+
+
+message LoginRequest{
+    enum LoginType{
+        EUnknown = 0;
+        EUnamePass = 1;
+        EFacebookLogin = 2;
+        EGoogleLogin = 3;
+        EOpenIDLogin = 4;
+        EEmailLogin = 5; // with easy link
+        ESmartTokenLogin = 6;
+        EPhoneLogin = 7;
+        EFBAccKit = 8;
+        EOther = 100;
+    }
+    LoginType type = 1;
+    
+    string uname = 2;
+    string mobile = 3;
+    string passw = 4;
+    string email = 5;
+    string token = 6;
+
+    /*optionals*/
+    string appID = 7;
+    string appPublicKey = 8;
+    string signedToken = 9;
+
+    string data = 20;
+    string otherData = 21;
+    
+    
+}
+
+message LoginReply{
+    enum LoginCode {
+        Success = 0;
+        WrongPassword = 1;
+        BadToken = 2;
+        UnknownError = 3;
+      }
+    LoginCode errorCode = 1;
+    string detail = 2;
+    string sessionKey = 3;
+    
+}
+
+// The first message in C2SMessage stream 
+message AuthenticateMessage{
+    string sessionKey = 1; //this will let server know what user is connecting
+    uint64 userID = 2;
+}
+
+message AuthenticateReply{
+    bool authenticated = 1;
+    string sessionKey = 2; //this can be new session for client
+    uint64 userID = 3;
+}
+
+
+message BaseMessage{
+    oneof Target{
+        uint64 channelID = 1;
+        uint64 userID = 2;
+        string topic = 3;
+    }
+    uint64 fromUID = 8; // ignore if it is from client to server.
+}
+
+message TextMessage{
+//    BaseMessage base = 1;
+    string text=2;
+}
+
+message PhotoMessage{
+//    BaseMessage base = 1;
+    string photoFormat = 2;
+    string photoData=3;
+    string description = 4;
+    string metaData = 5;
+
+}
+
+// The request message containing the user's name.
+message C2SMessage {
+    enum MessageType{
+        EAuthenticate = 0;
+        ETextMessage = 1;
+        EPhotoMessage = 2;
+        EVideoMessage = 3;
+        EDataMessage = 4;
+        ELinkMessage = 5;
+        ECompositeMessage = 6;
+        EAnythingMessages = 15;
+    }
+
+
+    MessageType type = 1;
+
+    BaseMessage base = 2;
+
+    int64 nonceID = 3;
+
+    oneof messages{
+        AuthenticateMessage authMessage = 4;
+        TextMessage txt = 5;
+        PhotoMessage photoMsg = 6;
+    }
+    
+}
+
+// The response message containing the greetings
+message S2CMessage {
+    string commonMessage = 1;
+
+    BaseMessage base = 2;
+
+    uint64 msgID = 3;
+
+    oneof Messages{
+        AuthenticateReply authReply = 5;
+
+        TextMessage txt = 6;
+
+        PhotoMessage photoMsg = 7;
+        
+    }    
+    google.protobuf.Any anything = 20;
+}
+
